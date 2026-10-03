@@ -6,30 +6,30 @@ The project focuses on practicing a realistic frontend workflow around **forms, 
 
 ## Tech Stack
 
-* React
-* TypeScript
-* Vite
-* Tailwind CSS
-* React Hook Form
-* Zod
-* Axios
-* TanStack Query
-* Vitest
-* React Testing Library
-* JSONPlaceholder
+- React
+- TypeScript
+- Vite
+- Tailwind CSS
+- React Hook Form
+- Zod
+- Axios
+- TanStack Query
+- Vitest
+- React Testing Library
+- JSONPlaceholder
 
 ## Features
 
-* Fetch and display users
-* Add a new user
-* Edit an existing user
-* Delete a user
-* Form validation
-* Loading and error states
-* Empty state
-* Server-state management with TanStack Query
-* API communication with Axios
-* Component and CRUD behavior testing
+- Fetch and display users
+- Add a new user
+- Edit an existing user
+- Delete a user
+- Form validation
+- Loading and error states
+- Empty state
+- Server-state management with TanStack Query
+- API communication with Axios
+- Component and CRUD behavior testing
 
 ## API
 

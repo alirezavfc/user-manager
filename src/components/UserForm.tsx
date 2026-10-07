@@ -60,22 +60,6 @@ export function UserForm() {
         </p>
       </label>
 
-      <label className="flex flex-col gap-2">
-        <span className="px-1 text-sm font-medium text-slate-700">Age</span>
-
-        <input
-          type="number"
-          placeholder="25"
-          min="1"
-          {...register("age", { valueAsNumber: true })}
-          className="rounded-2xl border border-slate-300 bg-white px-4 py-3 outline-none transition focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100"
-        />
-
-        <p className="min-h-5 px-1 text-sm text-red-800">
-          {errors.age?.message}
-        </p>
-      </label>
-
       <button
         type="submit"
         className="mt-2 rounded-full bg-indigo-600 px-6 py-3 font-medium text-white transition hover:bg-indigo-700 active:scale-[0.98]"

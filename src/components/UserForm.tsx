@@ -1,18 +1,34 @@
 import { useForm } from "react-hook-form";
 import { type UserFormData, userSchema } from "../types/user";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { createUser } from "../services/userApi";
 
 export function UserForm() {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm<UserFormData>({
     resolver: zodResolver(userSchema),
   });
 
+  const queryClient = useQueryClient();
+
+  const mutation = useMutation({
+    mutationFn: createUser,
+    onSuccess: () => {
+      reset(); // Reset the form only after a successful request, so it doesn't clear if the request fails.
+
+      queryClient.invalidateQueries({
+        queryKey: ["users"],
+      });
+    },
+  });
+
   const onSubmit = (data: UserFormData): void => {
-    console.log(data);
+    mutation.mutate(data);
   };
 
   return (
@@ -62,10 +78,15 @@ export function UserForm() {
 
       <button
         type="submit"
+        disabled={mutation.isPending}
         className="mt-2 rounded-full bg-indigo-600 px-6 py-3 font-medium text-white transition hover:bg-indigo-700 active:scale-[0.98]"
       >
-        Add User
+        {mutation.isPending ? "Adding..." : "Add User"}
       </button>
+      <div className="min-h-5">
+        {mutation.isSuccess && <p>User added successfully.</p>}
+        {mutation.isError && <p>Failed to add user.</p>}
+      </div>
     </form>
   );
 }

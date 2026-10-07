@@ -24,22 +24,6 @@ export function UserList() {
           <div key={user.id} className="rounded-3xl bg-slate-100 p-6 shadow-sm">
             <p className="text-lg font-semibold">{user.name}</p>
             <p className="text-sm text-slate-500">{user.email}</p>
-
-            <div className="mt-4 flex gap-2">
-              <button
-                type="button"
-                className="rounded-full bg-indigo-600 px-4 py-2 text-sm text-white hover:bg-indigo-700"
-              >
-                Edit
-              </button>
-
-              <button
-                type="button"
-                className="rounded-full bg-slate-200 px-4 py-2 text-sm hover:bg-slate-300"
-              >
-                Delete
-              </button>
-            </div>
           </div>
         ))}
       </div>

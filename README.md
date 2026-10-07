@@ -2,7 +2,7 @@
 
 A small single-page user management application built with React and TypeScript.
 
-The project focuses on practicing a realistic frontend workflow around **forms, API communication, server-state management, validation, CRUD operations, and testing** using commonly used React libraries.
+The project focuses on practicing a realistic frontend workflow around **forms, validation, API communication, server-state management, and asynchronous UI states** using commonly used React libraries.
 
 ## Tech Stack
 
@@ -22,39 +22,38 @@ The project focuses on practicing a realistic frontend workflow around **forms, 
 
 - Fetch and display users
 - Add a new user
-- Edit an existing user
-- Delete a user
-- Form validation
+- Form validation with Zod
 - Loading and error states
-- Empty state
+- Success feedback after creating a user
 - Server-state management with TanStack Query
 - API communication with Axios
-- Component and CRUD behavior testing
+- Component and API-related testing
 
 ## API
 
 The project uses [JSONPlaceholder](https://jsonplaceholder.typicode.com/) as a mock REST API.
 
-Available endpoints:
+Currently used endpoints:
 
 ```text
-GET    /users
-POST   /users
-PATCH  /users/:id
-DELETE /users/:id
+GET  /users
+POST /users
 ```
 
-> JSONPlaceholder simulates write operations but does not permanently persist changes. This project uses it only for frontend API practice.
+JSONPlaceholder simulates write operations but does not permanently persist changes. The API is used here to practice frontend API communication and server-state management.
 
 ## Project Structure
 
 ```text
 src/
 ├── components/
-├── hooks/
+│   ├── UserForm.tsx
+│   └── UserList.tsx
 ├── services/
-├── schemas/
+│   ├── api.ts
+│   └── userApi.ts
 ├── types/
+│   └── user.ts
 ├── App.tsx
 └── main.tsx
 ```
@@ -83,4 +82,6 @@ npm run test
 
 ## Purpose
 
-This project is part of my frontend development practice, with an emphasis on using common tools and patterns found in modern React applications rather than implementing API, form, and server-state management from scratch.
+This project is part of my frontend development practice, with an emphasis on using common tools and patterns found in modern React applications.
+
+It focuses on understanding how forms, validation, API requests, mutations, caching, and server-state management work together in a frontend application rather than implementing these concerns from scratch.

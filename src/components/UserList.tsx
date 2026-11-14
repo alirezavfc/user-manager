@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { getUsers } from "../services/userApi";
 
 export function UserList() {
-  const { data, isLoading, isError } = useQuery({
+  const { data, isLoading, isError, refetch } = useQuery({
     queryKey: ["users"],
     queryFn: getUsers,
   });
@@ -14,7 +14,12 @@ export function UserList() {
   }
 
   if (isError) {
-    return <p>Failed to load users.</p>;
+    return (
+      <div>
+        <p>Failed to load users.</p>
+        <button onClick={() => refetch()}>Try again🔄</button>
+      </div>
+    );
   }
   return (
     <div className="mx-auto w-full max-w-4xl">

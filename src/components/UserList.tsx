@@ -10,12 +10,18 @@ export function UserList() {
   const users = data ?? [];
 
   if (isLoading) {
-    return <p>Loading users...</p>;
+    return (
+      <div className="mx-auto w-full max-w-4xl">
+        <h3 className="mb-4 text-2xl font-semibold">Users List</h3>
+        <p>Loading users...</p>
+      </div>
+    );
   }
 
   if (isError) {
     return (
-      <div>
+      <div className="mx-auto w-full max-w-4xl">
+        <h3 className="mb-4 text-2xl font-semibold">Users List</h3>
         <p>Failed to load users.</p>
         <button onClick={() => refetch()}>Try again🔄</button>
       </div>

@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import { type UserFormData, userSchema } from "../types/user";
+import { type UserFormData, type User, userSchema } from "../types/user";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { createUser } from "../services/userApi";
@@ -14,18 +14,22 @@ export function UserForm() {
     resolver: zodResolver(userSchema),
   });
 
-  const queryClient = useQueryClient();
+  const queryClient = useQueryClient(); // or just write: useQueryClient().invalidateQueries({queryKey: ["users"],}); below
 
   const mutation = useMutation({
     mutationFn: createUser,
-    onSuccess: () => {
+    onSuccess: (newUser) => {
       reset(); // Reset the form only after a successful request, so it doesn't clear if the request fails.
 
-      queryClient.invalidateQueries({
-        queryKey: ["users"],
-      });
+      queryClient.setQueryData(["users"], (oldUsers: User[] | undefined) => [
+        newUser,
+        ...(oldUsers ?? []), // (oldUsers ?? []) ensures that if oldUsers is undefined or null, an empty array is used instead, preventing a Spread TypeError.
+      ]);
     },
   });
+  // if we had real server:
+  // "queryClient.invalidateQueries({queryKey: ["users"],});"
+  // or: "useQueryClient().invalidateQueries({queryKey: ["users"],});"
 
   const onSubmit = (data: UserFormData): void => {
     mutation.mutate(data);
